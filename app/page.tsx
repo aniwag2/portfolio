@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
 const projects = [
-  { id: 1, title: 'LinkedIn', description: 'This is a description of project 1', link: 'https://www.linkedin.com/in/anitejwaghray/' },
-  { id: 2, title: 'Github', description: 'This is a description of project 2', link: 'https://github.com/aniwag2' },
-  { id: 3, title: 'Theralert', description: 'This is a description of project 3', link: 'https://theralert.aniwaghray.com' },
+  { id: 1, title: 'LinkedIn', description: 'Connect with me!', link: 'https://www.linkedin.com/in/anitejwaghray/' },
+  { id: 2, title: 'Github', description: 'My public projects!', link: 'https://github.com/aniwag2' },
+  { id: 3, title: 'Theralert', description: 'This is the webapp I am currently developing that acts as a notification service and calendar for nursing homes/assisted living places to alert family members to the activities of patients.', link: 'https://theralert.aniwaghray.com' },
 ];
 
 export default function Home() {
