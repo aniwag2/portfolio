@@ -12,7 +12,7 @@ export default function Home() {
       <h1 className="text-4xl font-bold mb-8">Anitej Waghray</h1>
       <section className="mb-12">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-        <p>Hello!</p>
+        <p>Hello, my name is Anitej Waghray. I am currently a student at Purdue University majoring in Computer Science. You can check out my LinkedIn and Github above. Below are some of my personal projects.</p>
       </section>
       <section>
         <h2 className="text-2xl font-semibold mb-4">My Projects</h2>
