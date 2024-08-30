@@ -1,31 +1,37 @@
 import Link from 'next/link';
+import { Github, Linkedin } from 'lucide-react';
 
-const projects = [
-  { id: 1, title: 'LinkedIn', description: 'Connect with me!', link: 'https://www.linkedin.com/in/anitejwaghray/' },
-  { id: 2, title: 'Github', description: 'My public projects!', link: 'https://github.com/aniwag2' },
-  { id: 3, title: 'Theralert', description: 'This is the webapp I am currently developing that acts as a notification service and calendar for nursing homes/assisted living places to alert family members to the activities of patients.', link: 'https://theralert.aniwaghray.com' },
+const socialLinks = [
+  { id: 1, icon: Linkedin, link: 'https://www.linkedin.com/in/anitejwaghray/' },
+  { id: 2, icon: Github, link: 'https://github.com/aniwag2' },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-24">
-      <h1 className="text-4xl font-bold mb-8">Anitej Waghray</h1>
-      <section className="mb-12">
+    <main className="min-h-screen p-8 relative">
+      <div className="absolute top-4 right-4 flex space-x-4">
+        {socialLinks.map((social) => (
+          <Link key={social.id} href={social.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+            <social.icon size={24} />
+          </Link>
+        ))}
+      </div>
+      
+      <h1 className="text-4xl font-bold mb-8 text-center">Anitej Waghray</h1>
+      
+      <section className="mb-12 max-w-2xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-        <p>Hello, my name is Anitej Waghray. I am currently a student at Purdue University majoring in Computer Science. You can check out my LinkedIn and Github above. Below are some of my personal projects.</p>
+        <p>Hello, my name is Anitej Waghray. I am currently a student at Purdue University majoring in Computer Science.</p>
       </section>
-      <section>
-        <h2 className="text-2xl font-semibold mb-4">My Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <div key={project.id} className="border p-4 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="mb-4">{project.description}</p>
-              <Link href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-                View
-              </Link>
-            </div>
-          ))}
+      
+      <section className="max-w-3xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">Featured Project</h2>
+        <div className="border p-6 rounded-lg shadow-md">
+          <h3 className="text-xl font-semibold mb-2">Theralert</h3>
+          <p className="mb-4">This is the webapp I am currently developing that acts as a notification service and calendar for nursing homes/assisted living places to alert family members to the activities of patients.</p>
+          <Link href="https://theralert.aniwaghray.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            View Project
+          </Link>
         </div>
       </section>
     </main>
