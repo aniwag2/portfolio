@@ -8,32 +8,47 @@ const socialLinks = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-8 relative">
-      <div className="absolute top-4 right-4 flex space-x-4">
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8 relative">
+      <div className="absolute top-6 right-6 flex space-x-6">
         {socialLinks.map((social) => (
-          <Link key={social.id} href={social.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
-            <social.icon size={24} />
+          <Link key={social.id} href={social.link} target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-indigo-600 transition-colors duration-300">
+            <social.icon size={28} />
           </Link>
         ))}
       </div>
       
-      <h1 className="text-4xl font-bold mb-8 text-center">Anitej Waghray</h1>
-      
-      <section className="mb-12 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">About Me</h2>
-        <p>Hello, my name is Anitej Waghray. I am currently a student at Purdue University majoring in Computer Science.</p>
-      </section>
-      
-      <section className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-4">Featured Project</h2>
-        <div className="border p-6 rounded-lg shadow-md">
-          <h3 className="text-xl font-semibold mb-2">Theralert</h3>
-          <p className="mb-4">This is the webapp I am currently developing that acts as a notification service and calendar for nursing homes/assisted living places to alert family members to the activities of patients.</p>
-          <Link href="https://theralert.aniwaghray.com" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
-            View Project
-          </Link>
-        </div>
-      </section>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-5xl font-extrabold mb-8 text-center text-indigo-900 mt-16">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">
+            Anitej Waghray
+          </span>
+        </h1>
+        
+        <section className="mb-16 bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-3xl font-bold mb-6 text-indigo-800">About Me</h2>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Hello, my name is Anitej Waghray. I am currently a student at Purdue University majoring in Computer Science.
+          </p>
+        </section>
+        
+        <section className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-3xl font-bold mb-6 text-indigo-800">Featured Project</h2>
+          <div className="border-2 border-indigo-100 p-6 rounded-lg">
+            <h3 className="text-2xl font-semibold mb-4 text-indigo-700">Theralert</h3>
+            <p className="text-gray-700 mb-6 leading-relaxed">
+              This is the webapp I am currently developing that acts as a notification service and calendar for nursing homes/assisted living places to alert family members to the activities of patients.
+            </p>
+            <Link 
+              href="https://theralert.aniwaghray.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-block bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300"
+            >
+              View Project
+            </Link>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }
