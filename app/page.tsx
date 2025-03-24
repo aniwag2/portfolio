@@ -9,11 +9,6 @@ const socialLinks = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 p-8 relative text-gray-200">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6133670831991341"
-     crossorigin="anonymous"></script>
-
-
       <div className="absolute top-6 right-6 flex space-x-6">
         {socialLinks.map((social) => (
           <Link key={social.id} href={social.link} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-indigo-400 transition-colors duration-300">
