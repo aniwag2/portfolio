@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    # Build the Docker image from the Dockerfile in the current directory
+    build: .
+    # Map port 3000 on the host to port 3000 in the container
+    ports:
+      - "3000:3000"
+    # Mount the current directory into the container for live reloading during development.
+    # We explicitly exclude node_modules and .next to prevent issues with host OS vs container OS
+    # and to ensure the build artifacts are handled correctly inside the container.
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    # Define environment variables if needed (e.g., for production builds)
+    # environment:
+    #   - NODE_ENV=production
+    # Command to run the Next.js application (this should match your Dockerfile's CMD)
+    command: npm start
+    # Restart the container if it stops unexpectedly
+    restart: always
