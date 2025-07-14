@@ -32,7 +32,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 # Expose the port your Next.js app will run on
-EXPOSE 3000
+EXPOSE 3001
 
 # Set the command to run the Next.js application in production mode
 # This command depends on your package.json "start" script

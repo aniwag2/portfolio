@@ -6,7 +6,7 @@ services:
     # Use a pre-built image from a Docker registry instead of building locally
     image: awaghray/portfolio:latest
     ports:
-      - "3000:3000"
+      - "3001:3001"
     # For a production setup, you typically don't need to mount volumes for source code
     # as the code is already part of the image.
     # You might still mount volumes for persistent data (e.g., databases) if applicable.
