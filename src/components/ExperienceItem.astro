@@ -1,0 +1,45 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  entry: CollectionEntry<'experience'>;
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { company, role, period, link } = entry.data;
+---
+<div class="relative pl-6 pb-8 border-l border-gray-700 last:pb-0">
+  <span
+    class="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full bg-indigo-500 ring-4 ring-gray-900"
+  ></span>
+
+  <div class="flex flex-wrap items-baseline justify-between gap-x-3">
+    <h3 class="text-xl font-semibold text-gray-100">
+      {
+        link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 hover:text-indigo-300 transition-colors"
+          >
+            {company}
+            <Icon name="external" size={14} />
+          </a>
+        ) : (
+          company
+        )
+      }
+      {role && <span class="text-indigo-400 font-normal italic"> — {role}</span>}
+    </h3>
+    <span class="text-sm text-gray-400">{period}</span>
+  </div>
+
+  <div
+    class="mt-2 text-gray-300 leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1 [&_a]:text-indigo-400"
+  >
+    <Content />
+  </div>
+</div>

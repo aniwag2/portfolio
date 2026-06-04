@@ -1,39 +1,29 @@
-# Stage 1: Build the Next.js application
+# Stage 1: Build the Astro static site
 FROM node:20-alpine AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to leverage Docker cache
-# This ensures that npm install is only re-run if these files change
+# Copy manifests first to leverage Docker layer caching for installs
 COPY package.json package-lock.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy the rest of the source and build to /app/dist
 COPY . .
-
-# Build the Next.js application for production
-# This command depends on your package.json "build" script
 RUN npm run build
 
-# Stage 2: Create a lightweight production image
+# Stage 2: Lightweight production image that serves the static output
 FROM node:20-alpine
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy only the necessary files from the builder stage
-# This keeps the final image small and secure
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
+# A tiny static file server; serves the built site on port 3001
+RUN npm install -g sirv-cli@3
+
+# Copy only the built output and the start script
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
 
-# Expose the port your Next.js app will run on
 EXPOSE 3001
 
-# Set the command to run the Next.js application in production mode
-# This command depends on your package.json "start" script
+# Runs: sirv dist --host 0.0.0.0 --port 3001  (see package.json "start")
 CMD ["npm", "start"]

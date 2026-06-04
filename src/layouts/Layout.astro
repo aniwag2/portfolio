@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = `${site.name} Portfolio`,
+  description = site.about,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Google AdSense -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6133670831991341"
+      crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-6133670831991341" />
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-gray-900 to-indigo-900 text-gray-200 antialiased"
+  >
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  body {
+    font-family:
+      ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+      Arial, sans-serif;
+  }
+</style>

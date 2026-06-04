@@ -1,18 +1,14 @@
 version: '3.8'
 
 services:
-  nextjs-app:
+  portfolio:
     container_name: portfolio
     # Use a pre-built image from a Docker registry instead of building locally
     image: awaghray/portfolio:latest
     ports:
       - "3001:3001"
-    # For a production setup, you typically don't need to mount volumes for source code
-    # as the code is already part of the image.
-    # You might still mount volumes for persistent data (e.g., databases) if applicable.
-    # Define environment variables if needed (e.g., for production builds)
     environment:
-      - NODE_ENV=production # Set environment to production
-    # Command to run the Next.js application in production mode (matches Dockerfile's CMD)
+      - NODE_ENV=production
+    # Serves the built Astro site (matches the Dockerfile CMD / package.json start)
     command: npm start
     restart: always

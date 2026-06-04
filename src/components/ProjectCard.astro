@@ -1,0 +1,76 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, link, github, tags, featured } = project.data;
+---
+<article
+  class:list={[
+    'rounded-lg p-6 transition-colors duration-300 bg-gray-800/60 h-full flex flex-col',
+    featured ? 'border-2 border-indigo-600' : 'border border-gray-700',
+  ]}
+>
+  <div class="flex items-start justify-between gap-3">
+    <h3 class="text-2xl font-semibold text-indigo-400">{title}</h3>
+    {
+      featured && (
+        <span class="shrink-0 text-xs font-semibold uppercase tracking-wide text-indigo-300 bg-indigo-900/60 px-2 py-1 rounded">
+          Featured
+        </span>
+      )
+    }
+  </div>
+
+  <p class="text-gray-300 mt-3 leading-relaxed">{description}</p>
+
+  <div class="prose-invert mt-3 text-gray-400 text-sm leading-relaxed [&_a]:text-indigo-400 [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1">
+    <Content />
+  </div>
+
+  {
+    tags.length > 0 && (
+      <ul class="flex flex-wrap gap-2 mt-4">
+        {tags.map((tag) => (
+          <li class="text-xs text-indigo-300 bg-indigo-900/40 px-2 py-1 rounded">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <div class="mt-auto pt-5 flex flex-wrap gap-3">
+    {
+      link && (
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-indigo-600 text-gray-100 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300"
+        >
+          <Icon name="external" size={16} />
+          View Project
+        </a>
+      )
+    }
+    {
+      github && (
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 border border-gray-600 text-gray-200 font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+        >
+          <Icon name="github" size={16} />
+          Code
+        </a>
+      )
+    }
+  </div>
+</article>

@@ -1,0 +1,54 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+---
+<header class="relative pt-20 pb-8 text-center">
+  <div class="absolute top-6 right-6 flex space-x-5">
+    <a
+      href={site.social.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn"
+      class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+    >
+      <Icon name="linkedin" size={28} />
+    </a>
+    <a
+      href={site.social.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+    >
+      <Icon name="github" size={28} />
+    </a>
+  </div>
+
+  <h1 class="text-5xl font-extrabold mb-4 text-gray-100">
+    <span
+      class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400"
+    >
+      {site.name}
+    </span>
+  </h1>
+  <p class="text-lg text-gray-400">{site.tagline}</p>
+
+  <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+    <a
+      href={site.resume}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 bg-indigo-600 text-gray-100 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-300"
+    >
+      <Icon name="file" size={18} />
+      Resume
+    </a>
+    <a
+      href={`mailto:${site.email}`}
+      class="inline-flex items-center gap-2 border border-indigo-700 text-indigo-300 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-800/40 transition-colors duration-300"
+    >
+      <Icon name="mail" size={18} />
+      Contact
+    </a>
+  </div>
+</header>

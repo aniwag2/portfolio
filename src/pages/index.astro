@@ -1,0 +1,108 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import { site } from '../data/site';
+
+// Projects: featured first, then by `order` (desc).
+const projects = (await getCollection('projects')).sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  return b.data.order - a.data.order;
+});
+
+// Experience: most recent (highest `order`) first.
+const experience = (await getCollection('experience')).sort(
+  (a, b) => b.data.order - a.data.order
+);
+---
+<Layout>
+  <main class="max-w-4xl mx-auto px-6 pb-20">
+    <Header />
+
+    <section id="about" class="mb-16 bg-gray-800 rounded-lg shadow-lg p-8">
+      <SectionHeading title="About Me" />
+      <p class="text-lg text-gray-300 leading-relaxed">{site.about}</p>
+
+      <div class="mt-6">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-gray-400 mb-3">
+          Skills
+        </h3>
+        <ul class="flex flex-wrap gap-2">
+          {
+            site.skills.map((skill) => (
+              <li class="text-sm text-indigo-200 bg-indigo-900/40 border border-indigo-800 px-3 py-1 rounded-full">
+                {skill}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="mb-16">
+      <SectionHeading title="Projects" />
+      <div class="grid gap-6 sm:grid-cols-2">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+
+    <section id="experience" class="mb-16 bg-gray-800 rounded-lg shadow-lg p-8">
+      <SectionHeading title="Experience" />
+      <div class="mt-2">
+        {experience.map((entry) => <ExperienceItem entry={entry} />)}
+      </div>
+    </section>
+
+    <section id="education" class="mb-16">
+      <SectionHeading title="Education" />
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          site.education.map((edu) => (
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 class="text-xl font-semibold text-gray-100">{edu.school}</h3>
+              <p class="text-indigo-300 mt-1">{edu.detail}</p>
+              <p class="text-sm text-gray-400 mt-1">{edu.period}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="activities" class="mb-8">
+      <SectionHeading title="Activities" />
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          site.activities.map((activity) => (
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+              <h3 class="text-xl font-semibold text-indigo-300">
+                {activity.title}
+              </h3>
+              <p class="text-gray-300 mt-2 leading-relaxed">{activity.detail}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <footer class="text-center text-sm text-gray-500 pt-8 border-t border-gray-800">
+      <p>
+        © {new Date().getFullYear()} {site.name} ·
+        <a
+          href={site.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-indigo-400 transition-colors">LinkedIn</a
+        > ·
+        <a
+          href={site.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-indigo-400 transition-colors">GitHub</a
+        >
+      </p>
+    </footer>
+  </main>
+</Layout>
