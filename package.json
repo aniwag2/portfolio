@@ -8,7 +8,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "start": "sirv dist --host 0.0.0.0 --port 3001",
-    "astro": "astro"
+    "astro": "astro",
+    "docker:build": "docker build --platform linux/amd64 -t awaghray/portfolio:latest .",
+    "docker:push": "docker push awaghray/portfolio:latest",
+    "docker:publish": "npm run docker:build && npm run docker:push"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
