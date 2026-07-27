@@ -4,7 +4,7 @@ export const site = {
   name: 'Anitej Waghray',
   tagline: 'Computer Science student at Purdue University',
   about:
-    "Hello, my name is Anitej Waghray. Below are the projects I've built and the experience I've gathered along the way.",
+    "Computer Science graduate of Purdue University with software engineering experience across full-stack web development, API integration, data analytics, and containerized deployment in Python, Java, Go, and JavaScript.",
   email: 'aniwaghray@gmail.com',
   phone: '(574) 309-2538',
   resume: '/Anitej-Waghray-Resume.pdf',
