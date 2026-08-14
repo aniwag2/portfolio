@@ -37,7 +37,7 @@ export const site = {
     {
       title: 'Eagle Scout',
       detail:
-        ' led a construction and conservation service project, coordinating 7 volunteers across 100 hours of planning and execution',
+        'Led a construction and conservation service project, coordinating 7 volunteers across 100 hours of planning and execution',
     },
     {
       title: 'Community Service',
