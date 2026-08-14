@@ -37,12 +37,12 @@ export const site = {
     {
       title: 'Eagle Scout',
       detail:
-        'Participated in service opportunities ranging from construction to conservation.',
+        ' led a construction and conservation service project, coordinating 7 volunteers across 100 hours of planning and execution',
     },
     {
       title: 'Community Service',
       detail:
-        'Organized a family project to cook 200 meals weekly for shelters at the peak of the pandemic.',
+        'Organized a community volunteer initiative preparing 200 meals weekly for local shelters during the COVID-19 pandemic.',
     },
   ],
 };
